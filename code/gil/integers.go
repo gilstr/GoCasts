@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -54,7 +55,12 @@ func (ints integers) saveTofile(filename string) {
 }
 
 func newIntegersFromFile(filename string) integers {
-	bytes, _ := ioutil.ReadFile(filename)
+	bytes, err := ioutil.ReadFile(filename)
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
 
 	str := string(bytes)
 	strs := strings.Split(str, ",")
