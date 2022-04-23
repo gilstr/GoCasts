@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"strconv"
+	"strings"
+)
 
 type integers []int
 
@@ -33,4 +38,33 @@ func (ints *integers) reset() {
 	for i, _ := range *ints {
 		(*ints)[i] = 0
 	}
+}
+
+func (ints integers) toString() string {
+	i := []int(ints)
+	return strings.Trim(strings.Join(strings.Fields(fmt.Sprint(i)), ","), "[]")
+}
+
+func (ints integers) toByteSlice() []byte {
+	return []byte(ints.toString())
+}
+
+func (ints integers) saveTofile(filename string) {
+	ioutil.WriteFile(filename, ints.toByteSlice(), 0666)
+}
+
+func newIntegersFromFile(filename string) integers {
+	bytes, _ := ioutil.ReadFile(filename)
+
+	str := string(bytes)
+	strs := strings.Split(str, ",")
+
+	var ints = make([]int, len(strs))
+
+	for i, s := range strs {
+		ints[i], _ = strconv.Atoi(s)
+	}
+
+	return ints
+
 }

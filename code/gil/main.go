@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	numbers := integers{getInt(0), getInt(1), getInt(2)}
@@ -22,8 +24,21 @@ func main() {
 
 	printHorizontalLine()
 
-	numbers2.reset()
-	numbers2.print()
+	fmt.Println(numbers2.toString())
+
+	printHorizontalLine()
+
+	fileName := "test.dat"
+
+	numbers2.saveTofile(fileName)
+
+	printHorizontalLine()
+
+	numbers3 := newIntegersFromFile(fileName)
+
+	fmt.Println("Integers read from a file:")
+
+	numbers3.print()
 }
 
 func getInt(x int) int {
