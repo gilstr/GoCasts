@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
@@ -72,5 +73,12 @@ func newIntegersFromFile(filename string) integers {
 	}
 
 	return ints
+}
 
+func (ints integers) shuffle() {
+	for i := range ints {
+		newPosition := rand.Intn(len(ints) - 1)
+
+		ints[i], ints[newPosition] = ints[newPosition], ints[i]
+	}
 }
