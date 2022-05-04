@@ -7,6 +7,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type integers []int
@@ -76,9 +77,17 @@ func newIntegersFromFile(filename string) integers {
 }
 
 func (ints integers) shuffle() {
+
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
 	for i := range ints {
-		newPosition := rand.Intn(len(ints) - 1)
+		newPosition := r.Intn(len(ints) - 1)
 
 		ints[i], ints[newPosition] = ints[newPosition], ints[i]
 	}
+}
+
+func (ints integers) getLastElement() int {
+	return ints[len(ints)-1]
 }
