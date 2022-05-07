@@ -30,6 +30,7 @@ func main() {
 			zipCode: 100000,
 		},
 	}
+
 	s1.print()
 	s1.updateFirstName("Bill")
 	s1.print()
