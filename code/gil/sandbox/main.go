@@ -2,6 +2,9 @@ package main
 
 func main() {
 	x := "abc"
-
-	println(&x)
+	y := &x
+	z := &y
+	println(y)
+	println(&y)
+	println(&z)
 }
