@@ -1,4 +1,4 @@
-package main
+package dataStructures
 
 import (
 	"fmt"
@@ -90,4 +90,8 @@ func (ints integers) shuffle() {
 
 func (ints integers) getLastElement() int {
 	return ints[len(ints)-1]
+}
+
+func testDS() {
+
 }

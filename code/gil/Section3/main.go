@@ -1,11 +1,12 @@
-package main
+package dataStructures
 
 import (
 	"fmt"
+	"gil/dataStructures"
 )
 
 func main() {
-	numbers := newIntegers()
+	numbers := dataStructures.newIntegers()
 	numbers.print()
 	numbers.shuffle()
 	numbers.print()
